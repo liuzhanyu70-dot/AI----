@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientTransform="matrix(850 700 -730 890 610 350)" gradientUnits="userSpaceOnUse"><stop stop-color="#20211d"/><stop offset="1" stop-color="#08090a"/></radialGradient>
+    <linearGradient id="mint" x1="280" x2="920" y1="340" y2="570" gradientUnits="userSpaceOnUse"><stop stop-color="#c7fff3"/><stop offset="1" stop-color="#81e6d3"/></linearGradient>
+    <filter id="glow" x="200" y="210" width="800" height="560" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="34"/></filter>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1200v900H0z"/>
+  <circle cx="600" cy="450" r="250" fill="#81e6d3" fill-opacity=".1" filter="url(#glow)"/>
+  <path stroke="#81e6d3" stroke-opacity=".1" d="M0 720 1200 220M0 820 1200 320M0 620 1200 120"/>
+  <g stroke="url(#mint)" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="34" d="M350 450h500"/>
+    <path stroke-width="24" d="M294 352v196m-58-168v140m670-168v196m58-168v140"/>
+    <path stroke-width="16" d="M322 382v136m556-136v136"/>
+  </g>
+  <circle cx="600" cy="450" r="198" stroke="#81e6d3" stroke-opacity=".18" stroke-width="2"/>
+  <text x="72" y="814" fill="#d9e1e0" font-family="Arial,sans-serif" font-size="27" letter-spacing="9">STRENGTH / RHYTHM / ENERGY</text>
+</svg>

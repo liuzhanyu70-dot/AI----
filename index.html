@@ -184,9 +184,10 @@ a{color:inherit;text-decoration:none}
 .work-card:hover .work-title{color:var(--accent)}
 .work-desc{color:var(--text-3);font-size:15px;max-width:520px}
 
-/* 个人优势 */
+/* 个人爱好 */
 .strengths-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.strength-card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 34px;overflow:hidden;transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease)}
+.strength-card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 34px;overflow:hidden;cursor:pointer;transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease)}
+.strength-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .strength-card:hover{transform:translateY(-5px);border-color:rgba(129,230,211,.35);background:var(--panel-hover)}
 .strength-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
 .strength-icon{width:46px;height:46px;border:1px solid var(--line-strong);border-radius:12px;display:grid;place-items:center;color:var(--accent);transition:box-shadow .4s var(--ease),border-color .4s var(--ease)}
@@ -294,9 +295,9 @@ a{color:inherit;text-decoration:none}
 .work-detail.is-open{opacity:1;visibility:visible}
 .work-detail-card{position:relative;width:min(1540px,100%);height:min(82vh,900px);min-height:420px;display:grid;grid-template-columns:56% 44%;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:22px;background:#111214;transform:translateY(18px) scale(.985);transition:transform .4s var(--ease);box-shadow:0 30px 100px rgba(0,0,0,.5)}
 .work-detail.is-open .work-detail-card{transform:none}
-.work-detail-media{position:relative;min-width:0;min-height:0;background:#08090b;overflow:hidden}
-.work-detail-media img{width:100%;height:100%;object-fit:contain;background:#08090b}
-.work-detail-media.is-empty{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,rgba(129,230,211,.1),transparent 55%),#08090b}
+.work-detail-media{position:relative;min-width:0;min-height:0;background:#191a1c;overflow:hidden}
+.work-detail-media img{width:100%;height:100%;object-fit:contain;background:#191a1c}
+.work-detail-media.is-empty{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,rgba(129,230,211,.1),transparent 55%),#191a1c}
 .work-detail-media.is-empty::after{content:'PROJECT';font:12px var(--font-mono);letter-spacing:.35em;color:var(--text-3)}
 .work-detail-copy{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(38px,6vw,96px);background:#191a1c}
 .work-detail-index{font-size:clamp(68px,9vw,116px);font-weight:700;line-height:.9;letter-spacing:-.06em;color:rgba(129,230,211,.22);margin-bottom:20px}
@@ -305,6 +306,7 @@ a{color:inherit;text-decoration:none}
 .work-detail-description{font-size:clamp(15px,1.4vw,19px);line-height:1.9;color:var(--text-2);white-space:pre-wrap}
 .work-detail-repo{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:34px;padding:12px 18px;border:1px solid var(--line-strong);border-radius:999px;color:var(--text);font-size:14px;transition:.25s}
 .work-detail-repo:hover{border-color:var(--accent);color:var(--accent)}
+.work-detail-repo[hidden]{display:none}
 .work-detail-close{position:absolute;top:20px;right:20px;z-index:5;width:42px;height:42px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:25px;cursor:pointer}
 /* 响应式 */
 @media (max-width:1180px){
@@ -368,7 +370,7 @@ a{color:inherit;text-decoration:none}
     <nav class="nav-links" id="navLinks" aria-label="主导航">
       <a href="#works">作品</a>
       <a href="#about">关于</a>
-      <a href="#strengths">优势</a>
+      <a href="#strengths">爱好</a>
       <a href="#reviews">评价</a>
       <a href="#contact">联系</a>
       <a class="nav-cta" href="#contact">开始合作 <span class="nav-cta-arrow">↗</span></a>
@@ -428,7 +430,7 @@ a{color:inherit;text-decoration:none}
     <div class="container">
       <div class="about-grid">
         <div class="about-media" data-reveal>
-          <div class="avatar-frame"><img src="assets/avatar.jpg" alt="设计师侧影头像（占位）" loading="lazy" /></div>
+          <div class="avatar-frame"><img src="assets/profile-sunset.jpg" alt="夕阳下的建筑与街景" loading="lazy" /></div>
           <div class="avatar-plate">
             <span class="avatar-plate-name">刘展宇</span>
             <span class="avatar-plate-role">摄影 / AI视觉设计师</span>
@@ -498,16 +500,16 @@ a{color:inherit;text-decoration:none}
             <p class="work-desc">以单灯勾勒轮廓，在黑色里寻找皮肤的质感与情绪。</p>
           </div>
         </article>
-        <article class="work-card" data-reveal style="--d:.1s">
+        <article class="work-card" data-reveal style="--d:.1s" data-repo="https://github.com/liuzhanyu70-dot/The-Picture-Of-Scenery">
           <div class="work-figure">
-            <img src="assets/project-sunset.jpg" alt="暮色林间 — 城市黄昏摄影" loading="lazy" />
+            <img src="assets/project-sunset.jpg" alt="风景 — 黄昏风景摄影" loading="lazy" />
             <span class="work-index">02</span>
             <span class="work-view">VIEW <i>↗</i></span>
           </div>
           <div class="work-meta">
-            <div class="work-tags"><em>城市摄影</em><span>黄昏</span><span>动感</span><span>色彩</span></div>
-            <h3 class="work-title">暮色林间</h3>
-            <p class="work-desc">穿过树影与城市灯火，定格晚霞燃起时的片刻。</p>
+            <div class="work-tags"><em>风景摄影</em><span>黄昏</span><span>动感</span><span>色彩</span></div>
+            <h3 class="work-title">风景</h3>
+            <p class="work-desc">晚霞映照树影与城市轮廓，记录黄昏时分的风景。</p>
           </div>
         </article>
         <article class="work-card" data-reveal style="--d:0s">
@@ -554,48 +556,48 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- 个人优势 -->
+  <!-- 个人爱好 -->
   <section class="strengths section" id="strengths">
     <div class="container">
       <div class="sec-head-row" data-reveal>
-        <p class="sec-label">03 / STRENGTHS</p>
-        <h2 class="sec-heading">为什么可以放心交付。</h2>
+        <p class="sec-label">03 / HOBBIES</p>
+        <h2 class="sec-heading">镜头、代码与生活</h2>
       </div>
       <div class="strengths-grid">
-        <article class="strength-card" data-reveal style="--d:0s">
+        <article class="strength-card" data-reveal style="--d:0s" data-image="assets/project-1.jpg">
           <div class="strength-top">
-            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
             <span class="strength-index">01</span>
           </div>
-          <h3 class="strength-title">学习力</h3>
-          <p class="strength-desc">自主钻研新工具、新软件与新技能，上手快，习惯把实操经验沉淀为可复用的方法。</p>
+          <h3 class="strength-title">摄影</h3>
+          <p class="strength-desc">喜欢人像摄影，用镜头捕捉神情、光影与人物真实的状态。</p>
           <span class="strength-line"></span>
         </article>
-        <article class="strength-card" data-reveal style="--d:.08s">
+        <article class="strength-card" data-reveal style="--d:.08s" data-image="assets/project-3.jpg">
           <div class="strength-top">
-            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12s-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span>
             <span class="strength-index">02</span>
           </div>
-          <h3 class="strength-title">审美与质感</h3>
-          <p class="strength-desc">从光影把控到排版层级，追求简约、克制、耐看的设计表达，不堆砌、不喧哗。</p>
+          <h3 class="strength-title">AI 编程</h3>
+          <p class="strength-desc">常用 Codex 探索 AI 编程，把灵感和想法一点点做成可用的作品。</p>
           <span class="strength-line"></span>
         </article>
-        <article class="strength-card" data-reveal style="--d:.16s">
+        <article class="strength-card" data-reveal style="--d:.16s" data-image="assets/hobby-gaming-collage.jpg">
           <div class="strength-top">
-            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg></span>
+            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10a4 4 0 0 1 3.8 5l-1.2 4a2 2 0 0 1-3.4.8L14 15h-4l-2.2 2.8a2 2 0 0 1-3.4-.8l-1.2-4A4 4 0 0 1 7 8z"/><path d="M7 10v4m-2-2h4"/><circle cx="16.5" cy="11" r=".7"/></svg></span>
             <span class="strength-index">03</span>
           </div>
-          <h3 class="strength-title">逻辑 × 审美</h3>
-          <p class="strength-desc">大数据工程专业背景，能用工程逻辑理解 AI 工具与设计系统，跨界而有章法。</p>
+          <h3 class="strength-title">游戏</h3>
+          <p class="strength-desc">喜欢《暗区突围》《王者荣耀》《和平精英》和《瓦洛兰特》。</p>
           <span class="strength-line"></span>
         </article>
-        <article class="strength-card" data-reveal style="--d:.24s">
+        <article class="strength-card" data-reveal style="--d:.24s" data-image="assets/hobby-training.svg">
           <div class="strength-top">
-            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 7v10M8.5 9.5l7 5M15.5 9.5l-7 5"/></svg></span>
+            <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9v6m4-9v12m10-12v12m4-9v6M7 12h10"/></svg></span>
             <span class="strength-index">04</span>
           </div>
-          <h3 class="strength-title">严谨与协作</h3>
-          <p class="strength-desc">执行力强、认真细致、责任心突出，擅长沟通统筹与团队协作，交付可靠。</p>
+          <h3 class="strength-title">运动</h3>
+          <p class="strength-desc">平时喜欢健身和打羽毛球，在运动中保持活力与专注。</p>
           <span class="strength-line"></span>
         </article>
       </div>
@@ -663,7 +665,7 @@ a{color:inherit;text-decoration:none}
     <div class="footer-bar" data-reveal style="--d:.32s">
       <p>© 2026 刘展宇 · 摄影 / AI视觉设计师</p>
       <nav class="footer-nav" aria-label="页脚导航">
-        <a href="#works">作品</a><a href="#about">关于</a><a href="#strengths">优势</a><a href="#reviews">评价</a><a href="#contact">联系</a>
+        <a href="#works">作品</a><a href="#about">关于</a><a href="#strengths">爱好</a><a href="#reviews">评价</a><a href="#contact">联系</a>
       </nav>
       <a class="footer-top" href="#home">回到顶部 <span>↑</span></a>
     </div>
@@ -1084,10 +1086,27 @@ a{color:inherit;text-decoration:none}
     card.tabIndex = 0; card.setAttribute('role', 'button');
     function openCard() {
       var img = card.querySelector('.work-figure img'), tags = Array.prototype.map.call(card.querySelectorAll('.work-tags em,.work-tags span'), function (el) { return el.textContent.trim(); }).join(' · ');
-      showDetail({ index: card.querySelector('.work-index').textContent, title: card.querySelector('.work-title').textContent, category: tags, description: card.querySelector('.work-desc').textContent, image: img.getAttribute('src') });
+      showDetail({ index: card.querySelector('.work-index').textContent, title: card.querySelector('.work-title').textContent, category: tags, description: card.querySelector('.work-desc').textContent, image: img.getAttribute('src'), repo: card.getAttribute('data-repo') });
     }
     card.addEventListener('click', openCard);
     card.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openCard(); } });
+  });
+  document.querySelectorAll('#strengths .strength-card').forEach(function (card) {
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    function openHobby() {
+      showDetail({
+        index: card.querySelector('.strength-index').textContent,
+        title: card.querySelector('.strength-title').textContent,
+        category: '我的爱好',
+        description: card.querySelector('.strength-desc').textContent,
+        image: card.getAttribute('data-image')
+      });
+    }
+    card.addEventListener('click', openHobby);
+    card.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openHobby(); }
+    });
   });
   function render() {
     return getWorks().then(function (items) {

@@ -413,7 +413,7 @@ a{color:inherit;text-decoration:none}
   <!-- 全屏 Hero -->
   <section class="hero" id="home">
     <div class="hero-media" aria-hidden="true">
-      <img class="hero-image" src="assets/hero-sunset.jpg" alt="" />
+      <img class="hero-image" src="assets/hero-sunset.jpg" alt="" fetchpriority="high" decoding="async" />
       <canvas class="hero-canvas" id="heroCanvas"></canvas>
       <div class="hero-overlay"></div>
     </div>
@@ -452,7 +452,7 @@ a{color:inherit;text-decoration:none}
     <div class="container">
       <div class="about-grid">
         <div class="about-media" data-reveal>
-          <div class="avatar-frame"><img src="assets/profile-sunset.jpg" alt="夕阳下的建筑与街景" loading="lazy" /></div>
+          <div class="avatar-frame"><img src="assets/profile-sunset.jpg" alt="夕阳下的建筑与街景" loading="lazy" decoding="async" /></div>
           <div class="avatar-plate">
             <span class="avatar-plate-name">刘展宇</span>
             <span class="avatar-plate-role">摄影 / AIGC设计师</span>
@@ -512,7 +512,7 @@ a{color:inherit;text-decoration:none}
       <div class="works-grid">
         <article class="work-card" data-reveal style="--d:0s">
           <div class="work-figure">
-            <img src="assets/project-1.jpg" alt="光影叙事 — 人像摄影" loading="lazy" />
+            <img src="assets/project-1.jpg" alt="光影叙事 — 人像摄影" loading="lazy" decoding="async" />
             <span class="work-index">01</span>
             <span class="work-view">VIEW <i>↗</i></span>
           </div>
@@ -524,7 +524,7 @@ a{color:inherit;text-decoration:none}
         </article>
         <article class="work-card" data-reveal style="--d:.1s" data-repo="https://github.com/liuzhanyu70-dot/The-Picture-Of-Scenery">
           <div class="work-figure">
-            <img src="assets/project-sunset.jpg" alt="风景 — 黄昏风景摄影" loading="lazy" />
+            <img src="assets/project-sunset.jpg" alt="风景 — 黄昏风景摄影" loading="lazy" decoding="async" />
             <span class="work-index">02</span>
             <span class="work-view">VIEW <i>↗</i></span>
           </div>
@@ -536,7 +536,7 @@ a{color:inherit;text-decoration:none}
         </article>
         <article class="work-card" data-reveal style="--d:0s">
           <div class="work-figure">
-            <img src="assets/project-3.jpg" alt="页面视觉 — 界面设计" loading="lazy" />
+            <img src="assets/project-3.jpg" alt="页面视觉 — 界面设计" loading="lazy" decoding="async" />
             <span class="work-index">03</span>
             <span class="work-view">VIEW <i>↗</i></span>
           </div>
@@ -548,7 +548,7 @@ a{color:inherit;text-decoration:none}
         </article>
         <article class="work-card" data-reveal style="--d:.1s">
           <div class="work-figure">
-            <img src="assets/project-4.jpg" alt="AI 视觉 — 生成美学" loading="lazy" />
+            <img src="assets/project-4.jpg" alt="AI 视觉 — 生成美学" loading="lazy" decoding="async" />
             <span class="work-index">04</span>
             <span class="work-view">VIEW <i>↗</i></span>
           </div>
@@ -699,7 +699,7 @@ a{color:inherit;text-decoration:none}
     <button class="wechat-close" id="wechatClose" type="button" aria-label="关闭">×</button>
     <h3 id="wechatTitle">添加微信好友</h3>
     <p>使用微信扫描二维码，发送好友申请</p>
-    <img class="wechat-qr" src="assets/wechat-qr.png" alt="微信添加好友二维码" />
+    <img class="wechat-qr" src="assets/wechat-qr.png" alt="微信添加好友二维码" loading="lazy" decoding="async" />
     <div class="wechat-id">微信号：15863690822</div>
   </section>
 </div>
@@ -720,13 +720,24 @@ a{color:inherit;text-decoration:none}
   var burger = document.getElementById('navBurger');
   var links = document.getElementById('navLinks');
   var hero = document.getElementById('home');
+  var navBaseHeight = nav.offsetHeight;
+  var navThreshold = 0;
+  var scrollFrame = 0;
   function onScroll() {
-    var secondScreenStart = hero ? hero.offsetHeight - nav.offsetHeight : window.innerHeight;
-    nav.classList.toggle('is-scrolled', window.scrollY >= secondScreenStart);
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(function () {
+      scrollFrame = 0;
+      var isScrolled = window.scrollY >= navThreshold;
+      if (nav.classList.contains('is-scrolled') !== isScrolled) nav.classList.toggle('is-scrolled', isScrolled);
+    });
+  }
+  function updateNavThreshold() {
+    navThreshold = hero ? Math.max(0, hero.offsetHeight - navBaseHeight) : window.innerHeight;
+    onScroll();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('resize', updateNavThreshold, { passive: true });
+  updateNavThreshold();
 
   var heroPageRefresh = document.getElementById('heroPageRefresh');
   if (heroPageRefresh) {
@@ -989,11 +1000,11 @@ a{color:inherit;text-decoration:none}
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var raf = 0;
   function resize() {
-    canvas.width = canvas.offsetWidth * devicePixelRatio;
-    canvas.height = canvas.offsetHeight * devicePixelRatio;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.round(canvas.offsetWidth * dpr);
+    canvas.height = Math.round(canvas.offsetHeight * dpr);
   }
   resize();
-  window.addEventListener('resize', resize);
 
   var blobs = [
     { x: 0.72, y: 0.24, r: 0.5, color: '81,230,211', a: 0.05, vx: -0.0006, vy: 0.0004 },
@@ -1013,6 +1024,8 @@ a{color:inherit;text-decoration:none}
   }
   var t = 0;
   function draw() {
+    raf = 0;
+    if (document.hidden) return;
     var w = canvas.width, h = canvas.height;
     ctx.clearRect(0, 0, w, h);
     t += 0.002;
@@ -1036,9 +1049,23 @@ a{color:inherit;text-decoration:none}
         ctx.fillRect(w * x, h * st.y, w * st.len, 1);
       });
     }
-    raf = requestAnimationFrame(draw);
+    if (!reduce) raf = requestAnimationFrame(draw);
   }
   draw();
+  window.addEventListener('resize', function () {
+    resize();
+    if (reduce) draw();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    } else if (reduce) {
+      draw();
+    } else if (!raf) {
+      raf = requestAnimationFrame(draw);
+    }
+  });
 
 })();
 
@@ -1089,7 +1116,7 @@ a{color:inherit;text-decoration:none}
     document.getElementById('workDetailDescription').textContent = item.description || '';
     media.textContent = '';
     media.classList.toggle('is-empty', !item.image);
-    if (item.image) { var img = document.createElement('img'); img.src = item.image; img.alt = item.title || '作品图片'; media.appendChild(img); }
+    if (item.image) { var img = document.createElement('img'); img.decoding = 'async'; img.src = item.image; img.alt = item.title || '作品图片'; media.appendChild(img); }
     var repo = document.getElementById('workDetailRepo');
     repo.hidden = !item.repo;
     if (item.repo) repo.href = item.repo; else repo.removeAttribute('href');
@@ -1177,12 +1204,12 @@ a{color:inherit;text-decoration:none}
   function dismissLoader() {
     if (dismissed) return;
     dismissed = true;
-    var delay = Math.max(0, 950 - (Date.now() - shownAt));
+    var delay = Math.max(0, 500 - (Date.now() - shownAt));
     window.setTimeout(function () { loader.classList.add('is-hidden'); }, delay);
   }
   if (document.readyState === 'complete') dismissLoader();
   else window.addEventListener('load', dismissLoader, { once: true });
-  window.setTimeout(dismissLoader, 5000);
+  window.setTimeout(dismissLoader, 2500);
 })();
 </script>
 </body>

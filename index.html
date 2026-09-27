@@ -122,16 +122,17 @@ a{color:inherit;text-decoration:none}
 /* Hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
 .hero-media{position:absolute;inset:0}
-.hero-canvas,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-video{display:none}
-.hero-video.is-ready{display:block}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,10,.55) 0%,rgba(6,7,10,.25) 34%,rgba(6,7,10,.82) 82%,var(--bg) 100%),radial-gradient(120% 90% at 50% 10%,transparent 40%,rgba(6,7,10,.55) 100%)}
-.hero-inner{position:relative;z-index:2;width:100%;padding-top:96px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--text-2);margin-bottom:30px}
-.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px var(--accent-glow)}
-.hero-title{font-size:clamp(46px,7.4vw,128px);font-weight:650;letter-spacing:-.028em;line-height:1.03;margin-bottom:34px}
+.hero-image,.hero-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-image{object-position:center 56%;filter:saturate(.9) brightness(.78)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,12,10,.3) 0%,rgba(3,12,10,.16) 42%,rgba(6,7,10,.72) 88%,var(--bg) 100%),radial-gradient(70% 78% at 50% 38%,rgba(20,122,94,.28),transparent 75%),radial-gradient(120% 90% at 50% 10%,transparent 40%,rgba(6,7,10,.52) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1100px;padding-top:84px;display:flex;flex-direction:column;align-items:center;text-align:center;transform:translateY(-96px)}
+.hero-eyebrow{display:flex;flex-direction:column;align-items:center;gap:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(240,246,245,.82);margin-bottom:24px}
+.hero-kicker{display:inline-flex;align-items:center;justify-content:center;padding:8px 19px;border:1px solid rgba(226,255,248,.28);border-radius:999px;background:rgba(210,255,245,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#f2fffb;font-family:var(--font-sans);font-size:16px;font-weight:600;letter-spacing:.02em;text-transform:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 28px rgba(0,0,0,.12)}
+.hero-title{font-size:clamp(42px,6vw,92px);font-weight:650;letter-spacing:-.028em;line-height:1.08;margin-bottom:30px;text-wrap:balance;text-shadow:0 4px 30px rgba(0,0,0,.22)}
 .hero-line{display:block}
-.hero-sub{max-width:620px;font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.85;margin-bottom:44px}
+.hero-sub{position:relative;display:flex;align-items:center;justify-content:center;gap:20px;width:min(100%,470px);min-height:76px;padding:19px 58px;margin:0;font-size:15px;color:rgba(250,255,253,.94);line-height:1.75;text-align:center;border:1px solid rgba(225,255,247,.28);border-radius:16px;background:linear-gradient(110deg,rgba(229,255,246,.2),rgba(152,223,202,.16));backdrop-filter:blur(18px) saturate(1.18);-webkit-backdrop-filter:blur(18px) saturate(1.18);box-shadow:0 18px 55px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.16)}
+.hero-quote-refresh{position:absolute;right:20px;display:grid;place-items:center;flex:none;width:30px;height:30px;padding:0;border:0;border-radius:50%;color:#f4fffc;background:rgba(255,255,255,.15);font:inherit;font-size:17px;line-height:1;cursor:pointer;transition:background .2s,transform .2s}
+.hero-quote-refresh:hover{background:rgba(255,255,255,.26);transform:rotate(45deg)}
 .hero-ctas{display:flex;gap:18px;flex-wrap:wrap}
 .fold-piece{position:relative;display:inline-block;transform-origin:50% 0%;transform-style:preserve-3d;backface-visibility:hidden;animation:fold-text-unfold .64s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--fold-delay,0s)}
 .fold-text-run{display:inline}
@@ -412,24 +413,18 @@ a{color:inherit;text-decoration:none}
   <!-- 全屏 Hero -->
   <section class="hero" id="home">
     <div class="hero-media" aria-hidden="true">
+      <img class="hero-image" src="assets/hero-sunset.jpg" alt="" />
       <canvas class="hero-canvas" id="heroCanvas"></canvas>
-      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline
-        poster="assets/project-4.jpg" src="assets/hero-bg.mp4"></video>
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-inner container">
-      <p class="hero-eyebrow" style="--d:.05s"><span class="dot"></span>PORTFOLIO — VISUAL × AI × BRAND</p>
+      <p class="hero-eyebrow" style="--d:.05s"><span class="hero-kicker">摄影 · AIGC</span>PHOTOGRAPHY / AIGC / PERSONAL PORTFOLIO</p>
       <h1 class="hero-title">
-        <span class="hero-line" style="--d:.15s">把复杂</span>
-        <span class="hero-line" style="--d:.27s">设计成克制的高级</span>
+        <span class="hero-line" style="--d:.15s">欢迎来到我的记忆终端</span>
       </h1>
-      <p class="hero-sub" style="--d:.45s">以摄影的质感、AI 的效率与品牌的系统思维，处理每一个值得被认真对待的视觉问题。</p>
-      <div class="hero-ctas" style="--d:.6s">
-        <a class="btn btn-primary" href="#works">查看作品 <span>↓</span></a>
-        <a class="btn btn-ghost" href="#contact">联系我 <span>↗</span></a>
-      </div>
+      <p class="hero-sub" style="--d:.45s">用镜头记录真实 用灵感创造可能<button class="hero-quote-refresh" id="heroPageRefresh" type="button" aria-label="刷新网页" title="刷新网页">↻</button></p>
     </div>
-    <div class="hero-scroll" aria-hidden="true"><span>SCROLL</span><i></i></div>
+    <div class="hero-scroll" aria-hidden="true"><span>向下滚动</span><i></i></div>
   </section>
 
   <!-- 跑马灯 -->
@@ -733,6 +728,11 @@ a{color:inherit;text-decoration:none}
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
+  var heroPageRefresh = document.getElementById('heroPageRefresh');
+  if (heroPageRefresh) {
+    heroPageRefresh.addEventListener('click', function () { window.location.reload(); });
+  }
+
   /* ---- 首屏文字：FoldText 风格的逐字折叠展开 ---- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     function foldText(selector, startDelay, stagger) {
@@ -983,7 +983,7 @@ a{color:inherit;text-decoration:none}
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ---- Hero 动态画布（视频不可用时自动回退） ---- */
+  /* ---- Hero 动态画布叠层 ---- */
   var canvas = document.getElementById('heroCanvas');
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1040,16 +1040,6 @@ a{color:inherit;text-decoration:none}
   }
   draw();
 
-  /* ---- Hero 视频：可播放时切换显示 ---- */
-  var video = document.getElementById('heroVideo');
-  function videoReady() {
-    video.classList.add('is-ready');
-    canvas.style.display = 'none';
-  }
-  if (video.canPlayType('video/mp4')) {
-    video.addEventListener('canplaythrough', videoReady, { once: true });
-    video.addEventListener('error', function () { /* 保持画布回退 */ }, { once: true });
-  }
 })();
 
 /* ---- 可管理作品集与项目详情 ---- */

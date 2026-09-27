@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="刘展宇 — 摄影 / AI视觉设计师作品集。摄影质感、AI 效率与品牌系统思维的克制表达。" />
-<title>刘展宇 · 摄影 / AI视觉设计师</title>
+<meta name="description" content="刘展宇 — 摄影 / AIGC设计师作品集。摄影质感、AI 效率与品牌系统思维的克制表达。" />
+<title>刘展宇 · 摄影 / AIGC设计师</title>
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (window.location.hash) {
@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306070A'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='12.5' fill='none' stroke='%2381E6D3' stroke-opacity='0.5' stroke-width='1.5'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='%23E8EAEE' text-anchor='middle' letter-spacing='-1'%3ELY%3C/text%3E%3C/svg%3E" />
 <style>
 /* ============================================================
-   刘展宇 · 摄影 / AI视觉设计师 — Portfolio（本地版）
+   刘展宇 · 摄影 / AIGC设计师 — Portfolio（本地版）
    暗色 · 克制 · 科技感 · 非模板化
    ============================================================ */
 :root {
@@ -52,6 +52,25 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(28px,4vw,72px)}
 
+/* 首屏加载动画 */
+.site-loader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;background:#060812;opacity:1;visibility:visible;transition:opacity .7s cubic-bezier(.2,.65,.2,1),visibility .7s}
+.site-loader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.site-loader-inner{display:flex;flex-direction:column;align-items:center;text-align:center;transform:translateY(-12px)}
+.loader-avatar-wrap{position:relative;width:168px;height:168px;display:grid;place-items:center;margin-bottom:39px}
+.loader-avatar-wrap::before,.loader-avatar-wrap::after{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none}
+.loader-avatar-wrap::before{inset:-10px;border:1px solid rgba(129,230,211,.26);box-shadow:0 0 32px rgba(83,137,255,.2),0 0 54px rgba(129,230,211,.13);animation:loader-orbit 5s linear infinite}
+.loader-avatar-wrap::after{inset:-4px;border:2px solid transparent;border-top-color:#81e6d3;border-right-color:rgba(125,130,255,.75);filter:drop-shadow(0 0 7px rgba(129,230,211,.6));animation:loader-orbit 2.8s linear infinite reverse}
+.loader-avatar{width:132px;height:132px;object-fit:cover;border-radius:50%;border:3px solid rgba(238,244,250,.92);box-shadow:0 0 0 5px rgba(7,10,22,.9);animation:loader-breathe 2.8s ease-in-out infinite}
+.loader-name{color:#f2f4f8;font-size:30px;font-weight:650;letter-spacing:.28em;text-indent:.28em;line-height:1.2;margin-bottom:12px}
+.loader-role{font:700 11px var(--font-mono);letter-spacing:.28em;color:rgba(129,230,211,.78);margin-bottom:58px}
+.loader-status{font:600 11px var(--font-mono);letter-spacing:.34em;color:#77869d;margin-bottom:23px}
+.loader-progress{width:224px;height:2px;background:rgba(125,145,174,.2);overflow:hidden}
+.loader-progress i{display:block;width:48%;height:100%;background:linear-gradient(90deg,#696dff,#81e6d3);box-shadow:0 0 12px rgba(129,230,211,.65);transform-origin:left center;animation:loader-progress 1.25s cubic-bezier(.45,0,.35,1) infinite alternate}
+@keyframes loader-orbit{to{transform:rotate(360deg)}}
+@keyframes loader-breathe{0%,100%{transform:scale(.98);box-shadow:0 0 0 5px rgba(7,10,22,.9),0 0 18px rgba(129,230,211,.12)}50%{transform:scale(1.025);box-shadow:0 0 0 5px rgba(7,10,22,.9),0 0 30px rgba(129,230,211,.28)}}
+@keyframes loader-progress{from{transform:scaleX(.32)}to{transform:scaleX(1)}}
+@media (max-width:600px){.loader-avatar-wrap{width:148px;height:148px;margin-bottom:34px}.loader-avatar{width:116px;height:116px}.loader-name{font-size:26px}.loader-role{margin-bottom:48px}}
+@media (prefers-reduced-motion:reduce){.site-loader,.loader-avatar-wrap::before,.loader-avatar-wrap::after,.loader-avatar,.loader-progress i{animation:none!important;transition:none!important}.loader-progress i{transform:scaleX(.7)}}
 /* 滚动渐显 */
 [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
 [data-reveal].is-visible{opacity:1;transform:none}
@@ -359,13 +378,21 @@ a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
-
+<div class="site-loader" id="siteLoader" role="status" aria-live="polite" aria-label="网站正在加载">
+  <div class="site-loader-inner">
+    <div class="loader-avatar-wrap"><img class="loader-avatar" src="assets/brand-mark.jpg" alt="刘展宇头像" /></div>
+    <div class="loader-name">刘展宇</div>
+    <div class="loader-role">PHOTOGRAPHY / AIGC DESIGNER</div>
+    <div class="loader-status">INITIALIZING PORTFOLIO</div>
+    <div class="loader-progress" aria-hidden="true"><i></i></div>
+  </div>
+</div>
 <!-- 导航 -->
 <header class="nav" id="nav">
   <div class="nav-inner container">
     <a class="nav-logo" href="#home" aria-label="回到首页">
       <span class="nav-logo-mark"><img src="assets/brand-mark.jpg" alt="" /></span>
-      <span class="nav-logo-text"><b>刘展宇</b><i>摄影 / AI视觉设计师</i></span>
+      <span class="nav-logo-text"><b>刘展宇</b><i>摄影 / AIGC设计师</i></span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="主导航">
       <a href="#works">作品</a>
@@ -433,7 +460,7 @@ a{color:inherit;text-decoration:none}
           <div class="avatar-frame"><img src="assets/profile-sunset.jpg" alt="夕阳下的建筑与街景" loading="lazy" /></div>
           <div class="avatar-plate">
             <span class="avatar-plate-name">刘展宇</span>
-            <span class="avatar-plate-role">摄影 / AI视觉设计师</span>
+            <span class="avatar-plate-role">摄影 / AIGC设计师</span>
           </div>
         </div>
         <div class="about-body">
@@ -443,7 +470,7 @@ a{color:inherit;text-decoration:none}
             <span>同时思考的人<br /></span>
           </h2>
           <div class="about-text">
-            <p data-reveal style="--d:.1s">摄影 / AI视觉设计师，大数据工程专业在读。白天与数据、算法打交道，夜晚沉浸在取景框与光影里——“逻辑 + 审美”的跨界底色，让我的设计既有质感，也有章法。</p>
+            <p data-reveal style="--d:.1s">摄影 / AIGC设计师，大数据工程专业在读。白天与数据、算法打交道，夜晚沉浸在取景框与光影里——“逻辑 + 审美”的跨界底色，让我的设计既有质感，也有章法。</p>
             <p data-reveal style="--d:.18s">精通人像与风光摄影创作：光影把控、参数调试、画面构图、后期修图全流程；擅长页面视觉与图文排版，笃信简约高级的美学；同时熟悉 AI 视觉生成与静态页面美学逻辑，能快速把新工具转化为作品。</p>
           </div>
           <dl class="contact-list" data-reveal style="--d:.26s">
@@ -564,7 +591,7 @@ a{color:inherit;text-decoration:none}
         <h2 class="sec-heading">镜头、代码与生活</h2>
       </div>
       <div class="strengths-grid">
-        <article class="strength-card" data-reveal style="--d:0s" data-image="assets/project-1.jpg">
+        <article class="strength-card" data-reveal style="--d:0s" data-image="assets/hobby-photography-night.jpg">
           <div class="strength-top">
             <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
             <span class="strength-index">01</span>
@@ -573,7 +600,7 @@ a{color:inherit;text-decoration:none}
           <p class="strength-desc">喜欢人像摄影，用镜头捕捉神情、光影与人物真实的状态。</p>
           <span class="strength-line"></span>
         </article>
-        <article class="strength-card" data-reveal style="--d:.08s" data-image="assets/project-3.jpg">
+        <article class="strength-card" data-reveal style="--d:.08s" data-image="assets/hobby-ai-codex.png">
           <div class="strength-top">
             <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span>
             <span class="strength-index">02</span>
@@ -591,7 +618,7 @@ a{color:inherit;text-decoration:none}
           <p class="strength-desc">喜欢《暗区突围》《王者荣耀》《和平精英》和《瓦洛兰特》。</p>
           <span class="strength-line"></span>
         </article>
-        <article class="strength-card" data-reveal style="--d:.24s" data-image="assets/hobby-training.svg">
+        <article class="strength-card" data-reveal style="--d:.24s" data-image="assets/hobby-training.png">
           <div class="strength-top">
             <span class="strength-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9v6m4-9v12m10-12v12m4-9v6M7 12h10"/></svg></span>
             <span class="strength-index">04</span>
@@ -663,7 +690,7 @@ a{color:inherit;text-decoration:none}
       <button class="btn btn-ghost btn-lg" type="button" id="wechatOpen">添加微信 <span>↗</span></button>
     </div>
     <div class="footer-bar" data-reveal style="--d:.32s">
-      <p>© 2026 刘展宇 · 摄影 / AI视觉设计师</p>
+      <p>© 2026 刘展宇 · 摄影 / AIGC设计师</p>
       <nav class="footer-nav" aria-label="页脚导航">
         <a href="#works">作品</a><a href="#about">关于</a><a href="#strengths">爱好</a><a href="#reviews">评价</a><a href="#contact">联系</a>
       </nav>
@@ -1149,6 +1176,23 @@ a{color:inherit;text-decoration:none}
     if (file && file.size) { if (!file.type || file.type.indexOf('image/') !== 0) { alert('请选择图片文件。'); return; } var reader = new FileReader(); reader.onload = function () { persist(reader.result); }; reader.onerror = function () { alert('图片读取失败，请重试。'); }; reader.readAsDataURL(file); } else persist('');
   });
   render().catch(function (error) { console.warn('作品集读取失败：', error); });
+})();
+</script>
+<script>
+(function () {
+  var loader = document.getElementById('siteLoader');
+  if (!loader) return;
+  var shownAt = Date.now();
+  var dismissed = false;
+  function dismissLoader() {
+    if (dismissed) return;
+    dismissed = true;
+    var delay = Math.max(0, 950 - (Date.now() - shownAt));
+    window.setTimeout(function () { loader.classList.add('is-hidden'); }, delay);
+  }
+  if (document.readyState === 'complete') dismissLoader();
+  else window.addEventListener('load', dismissLoader, { once: true });
+  window.setTimeout(dismissLoader, 5000);
 })();
 </script>
 </body>

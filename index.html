@@ -376,12 +376,39 @@ a{color:inherit;text-decoration:none}
   .hero-line,.hero-eyebrow,.hero-sub,.hero-ctas,.hero-scroll,.fold-piece,.fold-piece::after{animation:none!important;opacity:1;transform:none}
   .marquee-track{animation:none}
 }
+/* Blog-style closing section */
+.footer{min-height:0;background:var(--bg)}
+.footer::before{display:none}
+.footer-inner{align-items:stretch;padding-block:clamp(70px,8vw,108px) 28px}
+.footer-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,350px);align-items:center;gap:clamp(48px,9vw,140px);min-height:430px}
+.footer-copy{max-width:760px}
+.footer-copy .sec-label{color:var(--accent);letter-spacing:.18em}
+.footer-heading{font-size:clamp(42px,6vw,82px);line-height:1.18;letter-spacing:-.025em;margin:28px 0 24px}
+.footer-heading span{display:block}
+.footer-sub{max-width:560px;margin-bottom:34px;font-size:16px;line-height:1.9;color:var(--text-2)}
+.footer-ctas{gap:12px;margin-bottom:0}
+.footer-ctas .btn{padding:15px 24px}
+.footer .btn-primary{background:var(--accent);color:#08110f;box-shadow:0 8px 30px rgba(129,230,211,.12)}
+.footer .btn-primary:hover{background:#9cf0e0;box-shadow:0 12px 34px rgba(129,230,211,.2)}
+.footer .btn-ghost{border-color:var(--line-strong);color:var(--text)}
+.footer .btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.footer-note{position:relative;min-height:310px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 24px 70px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.04)}
+.footer-note::after{content:'✳';position:absolute;right:-18px;bottom:-72px;color:rgba(129,230,211,.07);font-size:220px;line-height:1;pointer-events:none}
+.footer-note-kicker,.footer-note-topics{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--text-3)}
+.footer-note-kicker i,.footer-note-topics i{font-style:normal;color:var(--accent);padding-inline:4px}
+.footer-note-number{position:absolute;right:28px;top:54px;font:500 13px var(--font-mono);letter-spacing:.14em;color:var(--accent)}
+.footer-note-quote{position:relative;z-index:1;font-family:'Noto Serif SC','Songti SC','STSong',serif;font-size:clamp(25px,2.5vw,34px);line-height:1.65;letter-spacing:.04em;color:var(--text)}
+.footer-note-topics{position:relative;z-index:1;color:var(--text-2);letter-spacing:.08em}
+.footer-bar{margin-top:68px;padding-top:22px;border-color:var(--line);color:var(--text-3)}
+.footer-nav{gap:22px}.footer-nav a:hover,.footer-top:hover{color:var(--accent)}.footer-top{color:var(--text-2)}
+@media(max-width:900px){.footer-main{grid-template-columns:1fr;gap:42px;min-height:0}.footer-note{max-width:460px;min-height:260px}.footer-bar{margin-top:62px}}
+@media(max-width:720px){.footer-inner{padding-block:72px 24px}.footer-heading{font-size:clamp(39px,10vw,58px);line-height:1.28;margin:24px 0 20px}.footer-sub{font-size:14px;margin-bottom:26px}.footer-note{min-height:230px;padding:24px}.footer-note-quote{font-size:26px}.footer-bar{margin-top:46px}}
 </style>
 </head>
 <body>
 <div class="site-loader" id="siteLoader" role="status" aria-live="polite" aria-label="网站正在加载">
   <div class="site-loader-inner">
-    <div class="loader-avatar-wrap"><img class="loader-avatar" src="assets/brand-mark.jpg" alt="刘展宇头像" /></div>
+    <div class="loader-avatar-wrap"><img class="loader-avatar" src="assets/brand-mark.jpg" alt="刘展宇头像" decoding="async" /></div>
     <div class="loader-name">刘展宇</div>
     <div class="loader-role">PHOTOGRAPHY / AIGC DESIGNER</div>
     <div class="loader-status">INITIALIZING PORTFOLIO</div>
@@ -392,7 +419,7 @@ a{color:inherit;text-decoration:none}
 <header class="nav" id="nav">
   <div class="nav-inner container">
     <a class="nav-logo" href="#home" aria-label="回到首页">
-      <span class="nav-logo-mark"><img src="assets/brand-mark.jpg" alt="" /></span>
+      <span class="nav-logo-mark"><img src="assets/brand-mark.jpg" alt="" decoding="async" /></span>
       <span class="nav-logo-text"><b>刘展宇</b><i>摄影 / AIGC设计师</i></span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="主导航">
@@ -674,18 +701,28 @@ a{color:inherit;text-decoration:none}
 <!-- 底部联系（整屏收尾） -->
 <footer class="footer" id="contact">
   <div class="container footer-inner">
-    <p class="sec-label" data-reveal>05 / CONTACT</p>
-    <h2 class="footer-heading" data-reveal>
-      <span>让好设计<br /></span>
-      <span>自然发生<br /></span>
-    </h2>
-    <p class="footer-sub" data-reveal style="--d:.12s">品牌视觉、页面设计、AI 视觉探索……任何值得被认真对待的视觉问题，都欢迎聊聊。</p>
-    <div class="footer-ctas" data-reveal style="--d:.22s">
-      <a class="btn btn-primary btn-lg" href="mailto:3164284271@qq.com">邮箱联系 <span>↗</span></a>
-      <button class="btn btn-ghost btn-lg" type="button" id="wechatOpen">添加微信 <span>↗</span></button>
+    <div class="footer-main">
+      <div class="footer-copy">
+        <p class="sec-label" data-reveal>END NOTE / 个人手记</p>
+        <h2 class="footer-heading" data-reveal>
+          <span>故事还没写完</span>
+          <span>下篇再见</span>
+        </h2>
+        <p class="footer-sub" data-reveal style="--d:.12s">这里记录摄影、AI 创作和大学生活里的小发现。若你也喜欢观察生活、认真创作，欢迎来信聊聊。</p>
+        <div class="footer-ctas" data-reveal style="--d:.22s">
+          <a class="btn btn-primary btn-lg" href="mailto:3164284271@qq.com">写信给我 <span>↗</span></a>
+          <button class="btn btn-ghost btn-lg" type="button" id="wechatOpen">微信聊聊 <span>↗</span></button>
+        </div>
+      </div>
+      <aside class="footer-note" data-reveal style="--d:.16s" aria-label="博客主题：摄影、AI 与大学生活">
+        <span class="footer-note-kicker">PERSONAL JOURNAL <i>·</i> 2026</span>
+        <span class="footer-note-number">05</span>
+        <p class="footer-note-quote">把平凡的日子<br />认真记下来。</p>
+        <span class="footer-note-topics">摄影 <i>·</i> AIGC <i>·</i> 大学生活</span>
+      </aside>
     </div>
     <div class="footer-bar" data-reveal style="--d:.32s">
-      <p>© 2026 刘展宇 · 摄影 / AIGC设计师</p>
+      <p>© 2026 刘展宇 · 个人博客</p>
       <nav class="footer-nav" aria-label="页脚导航">
         <a href="#works">作品</a><a href="#about">关于</a><a href="#strengths">爱好</a><a href="#reviews">评价</a><a href="#contact">联系</a>
       </nav>
@@ -999,6 +1036,7 @@ a{color:inherit;text-decoration:none}
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var raf = 0;
+  var canvasInView = true;
   function resize() {
     var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(canvas.offsetWidth * dpr);
@@ -1025,7 +1063,7 @@ a{color:inherit;text-decoration:none}
   var t = 0;
   function draw() {
     raf = 0;
-    if (document.hidden) return;
+    if (document.hidden || !canvasInView) return;
     var w = canvas.width, h = canvas.height;
     ctx.clearRect(0, 0, w, h);
     t += 0.002;
@@ -1052,17 +1090,31 @@ a{color:inherit;text-decoration:none}
     if (!reduce) raf = requestAnimationFrame(draw);
   }
   draw();
+  if ('IntersectionObserver' in window) {
+    var canvasObserver = new IntersectionObserver(function (entries) {
+      canvasInView = entries[0].isIntersecting;
+      if (!canvasInView) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (reduce) {
+        draw();
+      } else if (!document.hidden && !raf) {
+        raf = requestAnimationFrame(draw);
+      }
+    });
+    canvasObserver.observe(hero);
+  }
   window.addEventListener('resize', function () {
     resize();
-    if (reduce) draw();
+    if (reduce && canvasInView && !document.hidden) draw();
   }, { passive: true });
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       if (raf) cancelAnimationFrame(raf);
       raf = 0;
-    } else if (reduce) {
+    } else if (reduce && canvasInView) {
       draw();
-    } else if (!raf) {
+    } else if (canvasInView && !raf) {
       raf = requestAnimationFrame(draw);
     }
   });
